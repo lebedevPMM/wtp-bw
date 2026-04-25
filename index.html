@@ -14,6 +14,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ru_RU" />
 
+  <!-- Favicon set -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="favicon-192x192.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -107,10 +115,9 @@
   <!-- =========================== HERO =========================== -->
   <section class="hero-bg min-h-screen-d flex flex-col">
     <header class="px-6 sm:px-10 pt-6 sm:pt-8 max-w-wtp mx-auto w-full flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-wtp-sm bg-ink text-bg flex items-center justify-center font-serif text-sm font-medium">W</div>
-        <span class="text-ink-2 text-sm tracking-wide font-medium">WTP</span>
-      </div>
+      <a href="/" class="block" aria-label="WTP">
+        <img src="logo.svg" alt="WTP" class="h-7 sm:h-8 w-auto" />
+      </a>
       <a href="#contact" class="text-sm text-ink-2 hover:text-gold transition border-b border-line hover:border-gold pb-px">Связаться</a>
     </header>
 
@@ -347,9 +354,9 @@
   <!-- =========================== FOOTER =========================== -->
   <footer class="px-6 sm:px-10 py-10 border-t border-line text-sm text-mute bg-bg-card">
     <div class="max-w-wtp mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <div class="w-6 h-6 rounded-wtp-sm bg-ink text-bg flex items-center justify-center font-serif text-xs font-medium">W</div>
-        <span>WTP · Dubai · с 2018</span>
+      <div class="flex items-center gap-3">
+        <img src="logo.svg" alt="WTP" class="h-5 w-auto opacity-70" />
+        <span>· Dubai · с 2018</span>
       </div>
       <div class="flex flex-wrap gap-x-6 gap-y-2">
         <a href="https://wtp.ae" class="hover:text-ink transition">wtp.ae</a>
