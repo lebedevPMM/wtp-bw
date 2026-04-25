@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="robots" content="noindex,nofollow" />
-  <meta name="theme-color" content="#0B1220" />
+  <meta name="theme-color" content="#FAFAFA" />
 
   <title>WTP — операционка семьи в UAE между поездками и продлениями</title>
-  <meta name="description" content="Для тех, кто уже в UAE: документы, продления, банк, удалённое управление активами — одна команда." />
+  <meta name="description" content="Для семей, которые уже в UAE: документы, продления, банк, удалённое управление активами — одна команда." />
 
   <meta property="og:title" content="WTP — операционка семьи в UAE" />
-  <meta property="og:description" content="Документы, которые работают без вас. Продления и сопровождение. Banking maintenance. Удалённое управление активами." />
+  <meta property="og:description" content="Документы. Продления. Banking maintenance. Удалённое управление активами." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ru_RU" />
 
@@ -20,27 +20,37 @@
       theme: {
         extend: {
           colors: {
-            navy: '#0B1220',
-            'navy-2': '#111A2E',
-            cream: '#F5F3EE',
-            gold: '#D4A574',
-            'gold-soft': '#E8C9A0',
-            muted: '#8892A6',
-            line: '#1E2A44'
+            bg: '#FAFAFA',
+            'bg-card': '#FFFFFF',
+            'bg-hover': '#F5F5F5',
+            ink: '#0A0A0A',
+            'ink-2': '#1B1B1B',
+            mute: '#666666',
+            'mute-2': '#767676',
+            line: '#E0E0E0',
+            gold: '#B8860B',
+            'gold-2': '#8B6914',
+            'gold-soft': '#D4AF37'
           },
           fontFamily: {
             sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-            serif: ['"IBM Plex Serif"', 'Georgia', 'serif']
+            serif: ['"Playfair Display"', 'Georgia', 'serif']
           },
           maxWidth: {
-            'reading': '44rem'
+            'reading': '44rem',
+            'wtp': '1200px'
+          },
+          borderRadius: {
+            'wtp-sm': '4px',
+            'wtp-md': '12px',
+            'wtp-lg': '24px'
           }
         }
       }
     }
   </script>
 
-  <!-- GA4 placeholder — TODO: замените G-XXXXXXXXXX на реальный GA4 Measurement ID перед деплоем -->
+  <!-- GA4 placeholder — TODO: replace G-XXXXXXXXXX before launch -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -50,18 +60,15 @@
   </script>
 
   <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" />
 
   <style>
-    :root {
-      --navy: #0B1220;
-      --cream: #F5F3EE;
-      --gold: #D4A574;
-      --muted: #8892A6;
-    }
     html, body {
-      background: #0B1220;
-      color: #F5F3EE;
+      background: #FAFAFA;
+      color: #0A0A0A;
       font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
       -webkit-font-smoothing: antialiased;
@@ -69,114 +76,127 @@
     }
     .hero-bg {
       background:
-        radial-gradient(120% 80% at 50% 0%, rgba(212,165,116,0.10) 0%, rgba(212,165,116,0) 60%),
-        linear-gradient(180deg, #0B1220 0%, #0B1220 60%, #0E1628 100%);
+        radial-gradient(60% 60% at 30% 20%, rgba(184, 134, 11, 0.05) 0%, rgba(184, 134, 11, 0) 60%),
+        #FAFAFA;
     }
-    .hairline { border-color: rgba(245,243,238,0.08); }
     .min-h-screen-d { min-height: 100dvh; }
+    .gold-text {
+      background: linear-gradient(135deg, #B8860B, #8B6914);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-bg {
+      background: linear-gradient(135deg, #B8860B, #8B6914);
+    }
+    .gold-bg:hover {
+      background: linear-gradient(135deg, #D4AF37, #B8860B);
+    }
     details > summary { list-style: none; cursor: pointer; }
     details > summary::-webkit-details-marker { display: none; }
     details[open] .chev { transform: rotate(180deg); }
     .chev { transition: transform .2s ease; }
-    .case-rule { background: linear-gradient(90deg, rgba(212,165,116,.4), rgba(212,165,116,0)); height: 1px; }
+    .editorial-h { font-family: 'Playfair Display', Georgia, serif; font-weight: 500; letter-spacing: -0.01em; }
+    .case-rule { background: linear-gradient(90deg, rgba(184,134,11,.5), rgba(184,134,11,0)); height: 1px; }
+    .uppercase-label { text-transform: uppercase; letter-spacing: 0.15em; font-size: 11px; font-weight: 500; }
   </style>
 </head>
 
-<body class="bg-navy text-cream antialiased">
+<body class="bg-bg text-ink antialiased">
 
   <!-- =========================== HERO =========================== -->
   <section class="hero-bg min-h-screen-d flex flex-col">
-    <header class="px-6 sm:px-10 pt-6 sm:pt-8 flex items-center justify-between">
+    <header class="px-6 sm:px-10 pt-6 sm:pt-8 max-w-wtp mx-auto w-full flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-sm border border-gold/50 flex items-center justify-center text-gold font-serif text-sm">W</div>
-        <span class="text-cream/80 text-sm tracking-wide">WTP</span>
+        <div class="w-8 h-8 rounded-wtp-sm bg-ink text-bg flex items-center justify-center font-serif text-sm font-medium">W</div>
+        <span class="text-ink-2 text-sm tracking-wide font-medium">WTP</span>
       </div>
-      <a href="#contact" class="text-sm text-cream/70 hover:text-gold transition border-b border-cream/20 hover:border-gold pb-px">Написать Оле</a>
+      <a href="#contact" class="text-sm text-ink-2 hover:text-gold transition border-b border-line hover:border-gold pb-px">Связаться</a>
     </header>
 
-    <main class="flex-1 flex items-center px-6 sm:px-10">
-      <div class="max-w-reading mx-auto sm:mx-0 sm:ml-[8%] py-16 sm:py-0">
-        <p class="text-gold text-xs sm:text-sm tracking-[0.2em] uppercase mb-5">Для семей, которые уже в UAE</p>
-        <h1 class="font-serif text-4xl sm:text-6xl leading-[1.05] mb-6 text-cream">
-          Операционка семьи в UAE — между поездками и продлениями.
+    <main class="flex-1 flex items-center px-6 sm:px-10 max-w-wtp mx-auto w-full">
+      <div class="max-w-reading py-16 sm:py-20">
+        <p class="uppercase-label text-mute mb-5">Для семей, которые уже в UAE</p>
+        <h1 class="editorial-h text-4xl sm:text-6xl leading-[1.05] mb-6 text-ink">
+          Операционка семьи в&nbsp;UAE — между поездками и&nbsp;продлениями.
         </h1>
-        <p class="text-lg sm:text-xl text-cream/75 leading-relaxed mb-10 max-w-xl">
-          Когда вы уже здесь, основные вопросы — не «как переехать», а как держать всё в порядке: продлить визу, подписать документ без мужа, продать или сдать квартиру, не прилетая, обновить счёт, не теряя substance.
+        <p class="text-lg sm:text-xl text-mute leading-relaxed mb-10 max-w-xl">
+          Когда вы уже здесь, основные вопросы — не «как переехать», а как держать всё в порядке: продлить визу, подписать документ без партнёра рядом, продать или сдать квартиру не прилетая, обновить счёт, не теряя substance.
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <a href="https://t.me/Olga_WTP" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-gold text-navy font-medium hover:bg-gold-soft transition min-h-[48px]" data-track="cta_telegram_hero">
-            Написать Оле в Telegram
+          <a href="#contact" class="inline-flex items-center justify-center gap-2 px-7 py-4 gold-bg text-white font-medium rounded-wtp-sm transition min-h-[48px]" data-track="cta_contact_hero">
+            Связаться с командой
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="#what" class="inline-flex items-center justify-center gap-2 px-6 py-4 border border-cream/20 text-cream/80 hover:text-cream hover:border-cream/40 transition min-h-[48px]">
+          <a href="#what" class="inline-flex items-center justify-center gap-2 px-7 py-4 border border-line text-ink hover:border-ink transition min-h-[48px] rounded-wtp-sm">
             Что мы делаем
           </a>
         </div>
-        <p class="mt-8 text-sm text-cream/50">
-          Dubai · с 2018 · команда из банкира, юриста, visa-менеджера и специалиста по недвижимости
+        <p class="mt-10 text-sm text-mute-2">
+          Dubai · с 2018 · банкир, юрист, visa-менеджер и специалист по недвижимости в одной команде
         </p>
       </div>
     </main>
   </section>
 
   <!-- =========================== WHAT WE DO =========================== -->
-  <section id="what" class="px-6 sm:px-10 py-20 sm:py-28 border-t border-line">
-    <div class="max-w-5xl mx-auto">
-      <p class="text-gold text-xs sm:text-sm tracking-[0.2em] uppercase mb-3">Что мы делаем</p>
-      <h2 class="font-serif text-3xl sm:text-5xl leading-[1.1] mb-12 max-w-3xl">
-        Четыре направления — для тех, кто <span class="text-gold">уже устроился</span>.
+  <section id="what" class="px-6 sm:px-10 py-20 sm:py-28 border-t border-line bg-bg-card">
+    <div class="max-w-wtp mx-auto">
+      <p class="uppercase-label text-mute mb-3">Что мы делаем</p>
+      <h2 class="editorial-h text-3xl sm:text-5xl leading-[1.1] mb-12 max-w-3xl text-ink">
+        Четыре направления — для тех, кто <span class="gold-text">уже устроился</span>.
       </h2>
 
       <div class="grid sm:grid-cols-2 gap-px bg-line">
-        <!-- 1 -->
-        <div class="bg-navy p-8 sm:p-10">
+        <!-- 01 -->
+        <div class="bg-bg-card p-8 sm:p-10 hover:bg-bg-hover transition">
           <div class="flex items-baseline gap-3 mb-4">
-            <span class="font-serif text-gold text-2xl">01</span>
-            <h3 class="font-serif text-2xl text-cream">Документы, которые работают без вас</h3>
+            <span class="editorial-h text-gold text-2xl">01</span>
+            <h3 class="editorial-h text-2xl text-ink">Документы, которые работают без вас</h3>
           </div>
-          <p class="text-cream/70 leading-relaxed mb-5">
+          <p class="text-ink-2 leading-relaxed mb-5">
             POA на конкретные действия — банк, Land Department, суд, регистратор компаний. Завещания в Dubai Courts. Доверенности на представление в гос-органах.
           </p>
-          <p class="text-sm text-cream/50">
-            Когда муж в командировке, а подписать что-то нужно сейчас — документ уже работает за вас.
+          <p class="text-sm text-mute">
+            Когда партнёра нет рядом, а подписать что-то нужно сейчас — документ уже работает за вас.
           </p>
         </div>
-        <!-- 2 -->
-        <div class="bg-navy p-8 sm:p-10">
+        <!-- 02 -->
+        <div class="bg-bg-card p-8 sm:p-10 hover:bg-bg-hover transition">
           <div class="flex items-baseline gap-3 mb-4">
-            <span class="font-serif text-gold text-2xl">02</span>
-            <h3 class="font-serif text-2xl text-cream">Продления и сопровождение</h3>
+            <span class="editorial-h text-gold text-2xl">02</span>
+            <h3 class="editorial-h text-2xl text-ink">Продления и сопровождение</h3>
           </div>
-          <p class="text-cream/70 leading-relaxed mb-5">
+          <p class="text-ink-2 leading-relaxed mb-5">
             Golden Visa renewal, dependent visas детей, продление компании и лицензии, бухгалтерия и audit, сопровождение между ESR-сроками.
           </p>
-          <p class="text-sm text-cream/50">
-            Цикл UAE-резидентства = постоянные дедлайны. Мы держим календарь, чтобы вы не держали.
+          <p class="text-sm text-mute">
+            Цикл UAE-резидентства — постоянные дедлайны. Мы держим календарь, чтобы вы не держали.
           </p>
         </div>
-        <!-- 3 -->
-        <div class="bg-navy p-8 sm:p-10">
+        <!-- 03 -->
+        <div class="bg-bg-card p-8 sm:p-10 hover:bg-bg-hover transition">
           <div class="flex items-baseline gap-3 mb-4">
-            <span class="font-serif text-gold text-2xl">03</span>
-            <h3 class="font-serif text-2xl text-cream">Banking maintenance</h3>
+            <span class="editorial-h text-gold text-2xl">03</span>
+            <h3 class="editorial-h text-2xl text-ink">Banking maintenance</h3>
           </div>
-          <p class="text-cream/70 leading-relaxed mb-5">
-            Открытие новых счетов под текущую структуру, разблокировки, переводы между UAE и страной происхождения, pre-screen на новую задачу до подачи в банк.
+          <p class="text-ink-2 leading-relaxed mb-5">
+            Открытие новых счетов под текущую структуру, разблокировки, переводы между UAE и страной происхождения, pre-screen новой задачи до подачи в банк.
           </p>
-          <p class="text-sm text-cream/50">
-            Прямые рабочие связи с relationship-менеджерами банков. Это часто решает ситуацию быстрее, чем формальный процесс.
+          <p class="text-sm text-mute">
+            Прямые рабочие связи с relationship-менеджерами банков часто решают ситуацию быстрее формального процесса.
           </p>
         </div>
-        <!-- 4 -->
-        <div class="bg-navy p-8 sm:p-10">
+        <!-- 04 -->
+        <div class="bg-bg-card p-8 sm:p-10 hover:bg-bg-hover transition">
           <div class="flex items-baseline gap-3 mb-4">
-            <span class="font-serif text-gold text-2xl">04</span>
-            <h3 class="font-serif text-2xl text-cream">Удалённое управление активами</h3>
+            <span class="editorial-h text-gold text-2xl">04</span>
+            <h3 class="editorial-h text-2xl text-ink">Удалённое управление активами</h3>
           </div>
-          <p class="text-cream/70 leading-relaxed mb-5">
+          <p class="text-ink-2 leading-relaxed mb-5">
             Сделки с недвижимостью без присутствия, операции в Dubai Land Department через POA, аренда и oversight арендаторов, sale processing, structure владения с учётом наследования.
           </p>
-          <p class="text-sm text-cream/50">
+          <p class="text-sm text-mute">
             Активы остаются под управлением, даже если вы временно в другой стране.
           </p>
         </div>
@@ -185,67 +205,67 @@
   </section>
 
   <!-- =========================== CASES =========================== -->
-  <section id="cases" class="px-6 sm:px-10 py-20 sm:py-28 border-t border-line bg-navy-2/30">
-    <div class="max-w-5xl mx-auto">
-      <p class="text-gold text-xs sm:text-sm tracking-[0.2em] uppercase mb-3">Из нашей практики</p>
-      <h2 class="font-serif text-3xl sm:text-5xl leading-[1.1] mb-3 max-w-3xl">
-        Два кейса, которые лучше всего показывают <span class="text-gold">подход</span>.
+  <section id="cases" class="px-6 sm:px-10 py-20 sm:py-28 border-t border-line">
+    <div class="max-w-wtp mx-auto">
+      <p class="uppercase-label text-mute mb-3">Из нашей практики</p>
+      <h2 class="editorial-h text-3xl sm:text-5xl leading-[1.1] mb-3 max-w-3xl text-ink">
+        Два кейса, которые лучше всего показывают <span class="gold-text">подход</span>.
       </h2>
-      <p class="text-cream/60 mb-14 max-w-2xl">
-        Анонимно, без точных сумм. Если ваша ситуация рядом — Оля разберёт детали в Telegram.
+      <p class="text-mute mb-14 max-w-2xl">
+        Анонимно, без точных сумм. Если ваша ситуация рядом — команда разберёт детали при контакте.
       </p>
 
-      <!-- CASE 1 -->
+      <!-- CASE 01 -->
       <article class="grid sm:grid-cols-12 gap-8 sm:gap-12 mb-20">
         <div class="sm:col-span-3">
-          <p class="text-gold/80 text-sm tracking-wider uppercase">Кейс 01</p>
-          <p class="font-serif text-cream/80 mt-2">Удалённое управление активами</p>
+          <p class="uppercase-label text-gold">Кейс 01</p>
+          <p class="editorial-h text-ink-2 mt-2 text-lg">Удалённое управление активами</p>
           <div class="case-rule mt-4"></div>
         </div>
         <div class="sm:col-span-9 max-w-reading">
-          <h3 class="font-serif text-2xl sm:text-3xl text-cream leading-snug mb-5">
+          <h3 class="editorial-h text-2xl sm:text-3xl text-ink leading-snug mb-5">
             Семья в Москве, две квартиры в Dubai Marina. Нужно продать одну, не прилетая.
           </h3>
-          <div class="space-y-4 text-cream/75 leading-relaxed">
+          <div class="space-y-4 text-ink-2 leading-relaxed">
             <p>
-              Контекст — обострение ситуации на Ближнем Востоке. Клиентка взвешивала срочный exit или паузу в любых движениях. Срочная продажа дала бы потерю по цене; пауза — заморозку капитала.
+              На фоне обострения ситуации на Ближнем Востоке клиентка взвешивала срочный exit или паузу в любых движениях. Срочная продажа дала бы потерю по цене; пауза — заморозку капитала.
             </p>
             <p>
-              <span class="text-gold">Что мы сделали.</span> Оформили POA дистанционно — документ с точной формулировкой полномочий, легализованный в консульстве UAE. Представляли интересы в Dubai Land Department, подписали договор продажи, приняли оплату на счёт WTP в UAE с последующим переводом клиенту в выбранную юрисдикцию. Вторую квартиру оставили в управлении: контроль арендатора, оплата сервисных сборов, страхование, ежеквартальный отчёт.
+              <span class="text-gold-2 font-medium">Что сделали.</span> Оформили POA дистанционно — документ с точной формулировкой полномочий, легализованный в консульстве UAE. Представляли интересы в Dubai Land Department, подписали договор продажи, приняли оплату на счёт WTP в UAE с последующим переводом клиенту в выбранную юрисдикцию. Вторую квартиру оставили в управлении: контроль арендатора, оплата сервисных сборов, страхование, ежеквартальный отчёт.
             </p>
             <p>
-              <span class="text-gold">Параллельно.</span> Сохранили резидентскую визу, банковские счета и компанию клиентки в активном статусе. Когда ситуация устаканится — инфраструктура работает, не нужно пересоздавать.
+              <span class="text-gold-2 font-medium">Параллельно.</span> Сохранили резидентскую визу, банковские счета и компанию в активном статусе. Когда ситуация устаканится — инфраструктура работает, не нужно пересоздавать.
             </p>
           </div>
-          <p class="mt-6 text-sm text-cream/50 italic border-l-2 border-gold/40 pl-4">
-            Главный тезис: эмоциональная распродажа активов часто не нужна. Большинство процессов в UAE можно вести удалённо — если документы и операционная связка собраны заранее.
+          <p class="mt-6 text-sm text-mute italic border-l-2 border-gold pl-4">
+            Главный тезис: эмоциональная распродажа активов чаще не нужна. Большинство процессов в UAE можно вести удалённо — если документы и операционная связка собраны заранее.
           </p>
         </div>
       </article>
 
-      <!-- CASE 2 -->
+      <!-- CASE 02 -->
       <article class="grid sm:grid-cols-12 gap-8 sm:gap-12">
         <div class="sm:col-span-3">
-          <p class="text-gold/80 text-sm tracking-wider uppercase">Кейс 02</p>
-          <p class="font-serif text-cream/80 mt-2">Цикл капитала</p>
+          <p class="uppercase-label text-gold">Кейс 02</p>
+          <p class="editorial-h text-ink-2 mt-2 text-lg">Цикл капитала</p>
           <div class="case-rule mt-4"></div>
         </div>
         <div class="sm:col-span-9 max-w-reading">
-          <h3 class="font-serif text-2xl sm:text-3xl text-cream leading-snug mb-5">
+          <h3 class="editorial-h text-2xl sm:text-3xl text-ink leading-snug mb-5">
             Купили апартаменты 2 года назад. Hand-over состоялся. Что дальше?
           </h3>
-          <div class="space-y-4 text-cream/75 leading-relaxed">
+          <div class="space-y-4 text-ink-2 leading-relaxed">
             <p>
-              Клиентка пришла с двумя задачами: корректный выход из текущего актива и стратегия реинвестирования. Не брокерская услуга — управление движением капитала.
+              Клиент пришёл с двумя задачами: корректный выход из текущего актива и стратегия реинвестирования. Не брокерская услуга — управление движением капитала.
             </p>
             <p>
-              <span class="text-gold">Что мы сделали.</span> На анализе проекта и стадии рынка отговорили от продажи на ранней стадии — нерентабельно. Дождались handover, упаковали объект, провели сделку выхода. Параллельно подобрали следующий актив до закрытия первой сделки — в локации с потенциалом роста, с понятной логикой выхода. Это убирает типичную ошибку: «есть капитал, нет стратегии — взяли первое попавшееся на пике».
+              <span class="text-gold-2 font-medium">Что сделали.</span> На анализе проекта и стадии рынка отговорили от продажи на ранней стадии — нерентабельно. Дождались handover, упаковали объект, провели сделку выхода. Параллельно подобрали следующий актив до закрытия первой сделки — в локации с потенциалом роста, с понятной логикой выхода. Это убирает типичную ошибку: «есть капитал, нет стратегии — взяли первое попавшееся на пике».
             </p>
             <p>
-              <span class="text-gold">Полный контур.</span> Golden Visa оформлена через новый актив, structure владения проверена с учётом дальнейшей продажи и налоговых последствий, оформлено завещание (Will) для защиты актива и закрытия наследственного вопроса.
+              <span class="text-gold-2 font-medium">Полный контур.</span> Golden Visa оформлена через новый актив, structure владения проверена с учётом дальнейшей продажи и налоговых последствий, оформлено завещание для защиты актива и закрытия наследственного вопроса.
             </p>
           </div>
-          <p class="mt-6 text-sm text-cream/50 italic border-l-2 border-gold/40 pl-4">
+          <p class="mt-6 text-sm text-mute italic border-l-2 border-gold pl-4">
             Главный тезис: «продажа недвижимости» — это не услуга. Услуга — управление переходом капитала из актива в актив, с одновременной защитой статуса, structure и наследования.
           </p>
         </div>
@@ -254,18 +274,18 @@
   </section>
 
   <!-- =========================== HOW WE WORK =========================== -->
-  <section class="px-6 sm:px-10 py-20 sm:py-24 border-t border-line">
+  <section class="px-6 sm:px-10 py-20 sm:py-24 border-t border-line bg-bg-card">
     <div class="max-w-3xl mx-auto">
-      <p class="text-gold text-xs sm:text-sm tracking-[0.2em] uppercase mb-3">Как мы работаем</p>
-      <h2 class="font-serif text-3xl sm:text-4xl leading-[1.1] mb-10">Один разговор. Не пять.</h2>
-      <div class="space-y-6 text-cream/75 leading-relaxed">
+      <p class="uppercase-label text-mute mb-3">Как мы работаем</p>
+      <h2 class="editorial-h text-3xl sm:text-4xl leading-[1.1] mb-10 text-ink">Один разговор. Не пять.</h2>
+      <div class="space-y-6 text-ink-2 leading-relaxed">
         <p>
-          Точка входа — Оля. Она ведёт клиентские отношения и собирает команду под задачу: банкир, юрист, visa-менеджер, специалист по недвижимости. Вы говорите один раз — дальше команда работает между собой.
+          Точка входа — менеджер по работе с клиентами. Под задачу собирается команда: банкир, юрист, visa-менеджер, специалист по недвижимости. Вы говорите один раз — дальше команда работает между собой.
         </p>
         <p>
-          Если задача оказывается шире, чем казалось при первом разговоре, — мы открыто говорим об этом и предлагаем порядок шагов. Не делаем работу, которая не нужна. Не молчим о работе, которая нужна.
+          Если задача оказывается шире, чем казалось при первом разговоре, мы открыто говорим об этом и предлагаем порядок шагов. Не делаем работу, которая не нужна. Не молчим о работе, которая нужна.
         </p>
-        <p class="text-cream/60">
+        <p class="text-mute">
           С 2018 года в UAE. Ведём семьи и предпринимателей с активами в нескольких юрисдикциях. Прямые рабочие связи с банками, девелоперами, Dubai Courts, иммиграционными центрами.
         </p>
       </div>
@@ -273,74 +293,68 @@
   </section>
 
   <!-- =========================== CONTACT =========================== -->
-  <section id="contact" class="px-6 sm:px-10 py-20 sm:py-28 border-t border-line bg-navy-2/40">
+  <section id="contact" class="px-6 sm:px-10 py-20 sm:py-28 border-t border-line">
     <div class="max-w-3xl mx-auto">
-      <p class="text-gold text-xs sm:text-sm tracking-[0.2em] uppercase mb-3">Связаться</p>
-      <h2 class="font-serif text-3xl sm:text-5xl leading-[1.05] mb-6">Напишите Оле в Telegram.</h2>
-      <p class="text-cream/70 leading-relaxed mb-10 max-w-2xl">
-        Без брифов и анкет. Расскажите ситуацию своими словами — Оля скажет, в каком формате удобнее разобрать и какие документы понадобятся.
+      <p class="uppercase-label text-mute mb-3">Связаться</p>
+      <h2 class="editorial-h text-3xl sm:text-5xl leading-[1.05] mb-6 text-ink">Оставьте контакт — команда свяжется.</h2>
+      <p class="text-ink-2 leading-relaxed mb-10 max-w-2xl">
+        Без брифов и анкет. Опишите ситуацию своими словами — мы вернёмся в течение 24 часов с предложением, в каком формате удобнее разобрать и какие документы понадобятся.
       </p>
 
-      <a href="https://t.me/Olga_WTP" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-7 py-4 bg-gold text-navy font-medium hover:bg-gold-soft transition min-h-[48px]" data-track="cta_telegram_main">
-        @Olga_WTP в Telegram
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-
-      <details class="mt-12 max-w-2xl border border-cream/15">
-        <summary class="px-6 py-5 flex items-center justify-between text-cream/85 hover:text-cream">
-          <span>Хочу, чтобы Оля написала первой →</span>
-          <svg class="chev w-4 h-4 text-cream/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-        </summary>
-        <form id="lead-form" class="px-6 pb-6 pt-2 space-y-4" action="https://formspree.io/f/PLACEHOLDER" method="POST">
-          <div>
-            <label for="name" class="block text-sm text-cream/60 mb-2">Имя</label>
-            <input id="name" name="name" type="text" required minlength="2" class="w-full bg-navy border border-cream/20 px-4 py-3 text-cream focus:border-gold focus:outline-none min-h-[48px]" />
-          </div>
-          <div>
-            <label for="contact" class="block text-sm text-cream/60 mb-2">Telegram или WhatsApp</label>
-            <input id="contact" name="contact" type="text" required pattern=".*[@+].*" placeholder="@username или +971..." class="w-full bg-navy border border-cream/20 px-4 py-3 text-cream focus:border-gold focus:outline-none min-h-[48px]" />
-          </div>
-          <div>
-            <label for="situation" class="block text-sm text-cream/60 mb-2">В двух словах — ситуация (опционально)</label>
-            <textarea id="situation" name="situation" rows="3" class="w-full bg-navy border border-cream/20 px-4 py-3 text-cream focus:border-gold focus:outline-none"></textarea>
-          </div>
-          <!-- UTM hidden inputs -->
-          <input type="hidden" name="utm_source" id="utm_source" />
-          <input type="hidden" name="utm_medium" id="utm_medium" />
-          <input type="hidden" name="utm_campaign" id="utm_campaign" />
-          <input type="hidden" name="utm_content" id="utm_content" />
-          <input type="hidden" name="utm_term" id="utm_term" />
-          <input type="hidden" name="referrer" id="referrer" />
-          <input type="hidden" name="page_path" id="page_path" />
-
-          <p class="text-xs text-cream/50">
-            Контакт мы используем только для связи. В рассылки не добавляем без отдельного согласия.
-          </p>
-          <button type="submit" class="px-6 py-3 bg-cream text-navy font-medium hover:bg-cream/90 transition min-h-[48px]">Отправить</button>
-        </form>
-        <div id="lead-success" class="hidden px-6 pb-6 pt-2 text-cream/80">
-          <p>Спасибо, <span id="lead-name"></span>. Оля свяжется в Telegram в ближайшие 24 часа. Если срочно — <a href="https://t.me/Olga_WTP" class="text-gold hover:text-gold-soft underline">@Olga_WTP</a>.</p>
+      <form id="lead-form" class="space-y-5 max-w-2xl bg-bg-card border border-line rounded-wtp-md p-6 sm:p-8" action="https://formspree.io/f/PLACEHOLDER" method="POST">
+        <div>
+          <label for="name" class="block text-sm text-mute mb-2">Имя</label>
+          <input id="name" name="name" type="text" required minlength="2" class="w-full bg-bg border border-line px-4 py-3 text-ink rounded-wtp-sm focus:border-ink focus:outline-none min-h-[48px]" />
         </div>
-      </details>
+        <div>
+          <label for="contact" class="block text-sm text-mute mb-2">Telegram, WhatsApp или email</label>
+          <input id="contact" name="contact" type="text" required minlength="3" placeholder="@username, +971..., name@..." class="w-full bg-bg border border-line px-4 py-3 text-ink rounded-wtp-sm focus:border-ink focus:outline-none min-h-[48px]" />
+        </div>
+        <div>
+          <label for="situation" class="block text-sm text-mute mb-2">В двух словах — ситуация (опционально)</label>
+          <textarea id="situation" name="situation" rows="3" class="w-full bg-bg border border-line px-4 py-3 text-ink rounded-wtp-sm focus:border-ink focus:outline-none"></textarea>
+        </div>
+        <!-- UTM hidden inputs -->
+        <input type="hidden" name="utm_source" id="utm_source" />
+        <input type="hidden" name="utm_medium" id="utm_medium" />
+        <input type="hidden" name="utm_campaign" id="utm_campaign" />
+        <input type="hidden" name="utm_content" id="utm_content" />
+        <input type="hidden" name="utm_term" id="utm_term" />
+        <input type="hidden" name="referrer" id="referrer" />
+        <input type="hidden" name="page_path" id="page_path" />
 
-      <!-- Quiet footnote about May 6 — does NOT dominate the page -->
-      <p class="mt-14 text-sm text-cream/45 max-w-2xl border-t border-cream/10 pt-6">
-        <span class="text-cream/60">P.S.</span> 6 мая Оля и Иван (CEO WTP) будут на встрече Bluewaters People — если вы там и хотите пересечься, напишите Оле заранее.
+        <p class="text-xs text-mute-2">
+          Контакт мы используем только для связи. В рассылки не добавляем без отдельного согласия.
+        </p>
+        <button type="submit" class="px-7 py-3 gold-bg text-white font-medium rounded-wtp-sm transition min-h-[48px]" data-track="form_submit">Отправить</button>
+      </form>
+
+      <div id="lead-success" class="hidden mt-6 p-6 bg-bg-card border border-line rounded-wtp-md text-ink-2">
+        <p>Спасибо, <span id="lead-name"></span>. Команда WTP свяжется в течение 24 часов.</p>
+      </div>
+
+      <p class="mt-6 text-sm text-mute-2">
+        Или напишите на <a href="mailto:hello@wtp.ae" class="text-gold-2 hover:text-gold underline">hello@wtp.ae</a>
+      </p>
+
+      <!-- Side note about May 6 — does not dominate -->
+      <p class="mt-14 text-sm text-mute max-w-2xl border-t border-line pt-6">
+        <span class="text-ink-2 font-medium">P.S.</span> 6 мая команда WTP будет на встрече Bluewaters People — если вы там, можем пересечься; оставьте контакт выше с пометкой про встречу.
       </p>
     </div>
   </section>
 
   <!-- =========================== FOOTER =========================== -->
-  <footer class="px-6 sm:px-10 py-10 border-t border-line text-sm text-cream/50">
-    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+  <footer class="px-6 sm:px-10 py-10 border-t border-line text-sm text-mute bg-bg-card">
+    <div class="max-w-wtp mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div class="flex items-center gap-2">
-        <div class="w-6 h-6 rounded-sm border border-gold/40 flex items-center justify-center text-gold/80 font-serif text-xs">W</div>
+        <div class="w-6 h-6 rounded-wtp-sm bg-ink text-bg flex items-center justify-center font-serif text-xs font-medium">W</div>
         <span>WTP · Dubai · с 2018</span>
       </div>
       <div class="flex flex-wrap gap-x-6 gap-y-2">
-        <a href="https://wtp.ae" class="hover:text-cream">wtp.ae</a>
-        <a href="https://t.me/Olga_WTP" class="hover:text-cream">@Olga_WTP</a>
-        <a href="mailto:hello@wtp.ae" class="hover:text-cream">hello@wtp.ae</a>
+        <a href="https://wtp.ae" class="hover:text-ink transition">wtp.ae</a>
+        <a href="mailto:hello@wtp.ae" class="hover:text-ink transition">hello@wtp.ae</a>
+        <a href="#contact" class="hover:text-ink transition">Связаться</a>
       </div>
     </div>
   </footer>
@@ -395,7 +409,6 @@
           window.location.href = 'mailto:hello@wtp.ae?subject=' + subj + '&body=' + body;
           return;
         }
-        // Real Formspree path: let it submit, but show success state
         e.preventDefault();
         fetch(action, {
           method: 'POST',
@@ -409,10 +422,10 @@
             document.getElementById('lead-success').classList.remove('hidden');
             try { gtag('event', 'form_submit', { 'form_name': 'lead' }); } catch(_){}
           } else {
-            alert('Не удалось отправить. Напишите Оле напрямую: @Olga_WTP');
+            alert('Не удалось отправить. Напишите на hello@wtp.ae');
           }
         }).catch(function(){
-          alert('Не удалось отправить. Напишите Оле напрямую: @Olga_WTP');
+          alert('Не удалось отправить. Напишите на hello@wtp.ae');
         });
       });
     })();
