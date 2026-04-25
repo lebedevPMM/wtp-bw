@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#0B1220" />
+
+  <title>WTP2 — операционка семьи в UAE без операционки</title>
+  <meta name="description" content="WTP2: банк, компания, виза, документы и активы для семей в UAE — в одной команде. Оля на связи, Иван (CEO) на встречах." />
+
+  <!-- Open Graph (для шеринга в TG/WhatsApp) -->
+  <meta property="og:title" content="WTP2 — операционка семьи в UAE" />
+  <meta property="og:description" content="Банк, компания, виза, документы, активы — одна команда. Оля на связи, Иван (CEO) лично на встречах." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+
+  <!-- Tailwind CDN (no build step) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0B1220',
+            'navy-2': '#111A2E',
+            cream: '#F5F3EE',
+            gold: '#D4A574',
+            'gold-soft': '#E8C9A0',
+            muted: '#8892A6',
+            line: '#1E2A44'
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            serif: ['"IBM Plex Serif"', 'Georgia', 'serif']
+          },
+          maxWidth: {
+            'reading': '40rem'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- GA4 placeholder — TODO: замените G-XXXXXXXXXX на реальный GA4 Measurement ID перед деплоем -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    // TODO: замените G-XXXXXXXXXX на реальный GA4 Measurement ID
+    gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+  </script>
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+  <style>
+    :root {
+      --navy: #0B1220;
+      --cream: #F5F3EE;
+      --gold: #D4A574;
+      --muted: #8892A6;
+    }
+    html, body {
+      background: #0B1220;
+      color: #F5F3EE;
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    /* Subtle hero grain via SVG noise — keeps LCP fast (no images) */
+    .hero-bg {
+      background:
+        radial-gradient(120% 80% at 50% 0%, rgba(212,165,116,0.12) 0%, rgba(212,165,116,0) 60%),
+        linear-gradient(180deg, #0B1220 0%, #0B1220 60%, #0E1628 100%);
+    }
+    .hairline { border-color: rgba(245,243,238,0.08); }
+    .gold-rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,165,116,0.55), transparent);
+    }
+    /* CTA — gold pill */
+    .btn-primary {
+      background: var(--gold);
+      color: #0B1220;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .btn-primary:hover { background: #E8C9A0; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(212,165,116,0.18); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(245,243,238,0.18);
+    }
+    .btn-ghost:hover { border-color: rgba(212,165,116,0.55); color: var(--gold); }
+
+    /* Card — operational ladder */
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.0) 100%);
+      border: 1px solid rgba(245,243,238,0.08);
+      border-radius: 14px;
+    }
+    .card:hover { border-color: rgba(212,165,116,0.35); }
+
+    /* Eyebrow tag */
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Form */
+    .field {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(245,243,238,0.10);
+      color: var(--cream);
+      border-radius: 10px;
+      padding: 14px 14px;
+      width: 100%;
+      font-size: 16px; /* prevents iOS zoom on focus */
+      min-height: 48px;
+    }
+    .field:focus {
+      outline: none;
+      border-color: rgba(212,165,116,0.55);
+      box-shadow: 0 0 0 3px rgba(212,165,116,0.12);
+    }
+
+    /* Accordion */
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .chev { transform: rotate(180deg); }
+    .chev { transition: transform .2s ease; }
+
+    /* Anchor offset for sticky header (none here, but safe) */
+    section[id] { scroll-margin-top: 24px; }
+
+    /* Min mobile target */
+    .tap { min-height: 48px; min-width: 48px; }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      .btn-primary, .card, .chev { transition: none; }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- ====================== HERO ====================== -->
+  <header class="hero-bg">
+    <div class="mx-auto max-w-md sm:max-w-2xl lg:max-w-3xl px-5 sm:px-6 pt-6 pb-12 sm:pt-8 min-h-[100dvh] flex flex-col">
+
+      <!-- Brand row -->
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <!-- Inline SVG mark (no external image) -->
+          <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+            <rect x="1" y="1" width="20" height="20" rx="4" fill="none" stroke="#D4A574" stroke-width="1.4"/>
+            <path d="M5 14 L9 7 L11 11 L13 7 L17 14" fill="none" stroke="#F5F3EE" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          <span class="text-cream/90 tracking-tight font-semibold">WTP2</span>
+        </div>
+        <div class="eyebrow">Dubai · с 2018</div>
+      </div>
+
+      <!-- Hero copy -->
+      <div class="mt-12 sm:mt-20 flex-1 flex flex-col justify-center">
+        <p class="eyebrow mb-4">Семьи в UAE</p>
+
+        <h1 class="font-serif text-cream text-[34px] leading-[1.08] sm:text-5xl sm:leading-[1.05] tracking-[-0.015em]">
+          Банк, компания, виза, документы&nbsp;и&nbsp;активы.<br/>
+          <span class="text-gold">Одна команда.</span>
+        </h1>
+
+        <p class="mt-6 text-cream/80 text-[17px] sm:text-lg leading-relaxed max-w-reading">
+          Помогаем семьям держать операционку в&nbsp;UAE без операционки.
+          Оля на&nbsp;связи в&nbsp;Telegram, Иван (CEO) лично&nbsp;— на&nbsp;встречах.
+        </p>
+
+        <!-- CTAs -->
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <a
+            href="https://t.me/Olga_WTP"
+            data-cta="hero-primary"
+            class="btn-primary tap inline-flex items-center justify-center px-6 rounded-full text-[15px]"
+          >
+            Написать Оле в&nbsp;Telegram
+            <svg class="ml-2" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a
+            href="#ladder"
+            data-cta="hero-secondary"
+            class="tap inline-flex items-center justify-center text-cream/80 hover:text-gold text-[15px]"
+          >
+            узнать больше&nbsp;<span aria-hidden="true">↓</span>
+          </a>
+        </div>
+
+        <!-- Meta -->
+        <div class="mt-10 sm:mt-14 text-muted text-[13px] tracking-wide">
+          Client Success Manager: Оля Зуева · координирует команду WTP2
+        </div>
+      </div>
+
+      <div class="gold-rule mt-8"></div>
+    </div>
+  </header>
+
+  <!-- ====================== OPERATIONAL LADDER ====================== -->
+  <section id="ladder" class="bg-navy">
+    <div class="mx-auto max-w-md sm:max-w-3xl lg:max-w-5xl px-5 sm:px-6 py-16 sm:py-24">
+
+      <div class="max-w-reading">
+        <p class="eyebrow mb-3">4 уровня</p>
+        <h2 class="font-serif text-cream text-[28px] leading-tight sm:text-4xl tracking-[-0.01em]">
+          Операционная карта семьи в&nbsp;UAE
+        </h2>
+        <p class="mt-4 text-cream/75 text-[16px] sm:text-lg leading-relaxed">
+          От&nbsp;одной задачи до&nbsp;полного зонта над бытом семьи.
+          Большинство заходит с&nbsp;одной точечной задачи&nbsp;— дальше&nbsp;по ситуации.
+        </p>
+      </div>
+
+      <div class="mt-10 sm:mt-12 grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+        <!-- L0 -->
+        <article class="card p-6">
+          <div class="flex items-center justify-between">
+            <span class="eyebrow">L0</span>
+            <span class="text-gold text-[13px]">Single op</span>
+          </div>
+          <h3 class="mt-4 text-cream text-xl font-semibold tracking-tight">Одна задача</h3>
+          <p class="mt-3 text-cream/75 text-[15px] leading-relaxed">
+            Завещание Dubai Courts, доверенность (POA),
+            продление визы или открытие банковского счёта&nbsp;—
+            берём одну точку и&nbsp;закрываем её.
+          </p>
+          <p class="mt-4 text-muted text-[13px] leading-relaxed">
+            Подходит, если&nbsp;у&nbsp;вас одна понятная задача и&nbsp;хочется её&nbsp;закрыть, а&nbsp;не&nbsp;обсуждать.
+          </p>
+        </article>
+
+        <!-- L1 -->
+        <article class="card p-6">
+          <div class="flex items-center justify-between">
+            <span class="eyebrow">L1</span>
+            <span class="text-gold text-[13px]">Documents Suite</span>
+          </div>
+          <h3 class="mt-4 text-cream text-xl font-semibold tracking-tight">Документы&nbsp;семьи</h3>
+          <p class="mt-3 text-cream/75 text-[15px] leading-relaxed">
+            Wills + POA + продление компании.
+            Документальная инфраструктура семьи в&nbsp;UAE&nbsp;— чтобы&nbsp;спать спокойно по&nbsp;бумагам.
+          </p>
+          <p class="mt-4 text-muted text-[13px] leading-relaxed">
+            Подходит, если&nbsp;документы накопились и&nbsp;каждый раз решаются «потом».
+          </p>
+        </article>
+
+        <!-- L2 -->
+        <article class="card p-6">
+          <div class="flex items-center justify-between">
+            <span class="eyebrow">L2</span>
+            <span class="text-gold text-[13px]">Family Operational</span>
+          </div>
+          <h3 class="mt-4 text-cream text-xl font-semibold tracking-tight">Операционка&nbsp;семьи</h3>
+          <p class="mt-3 text-cream/75 text-[15px] leading-relaxed">
+            Documents Suite + банковские счета +
+            visa maintenance (включая dependent visa детей и&nbsp;Golden Visa renewal).
+          </p>
+          <p class="mt-4 text-muted text-[13px] leading-relaxed">
+            Подходит, если&nbsp;нужно, чтобы&nbsp;документы и&nbsp;виза семьи были закрыты на&nbsp;год вперёд.
+          </p>
+        </article>
+
+        <!-- L3 -->
+        <article class="card p-6">
+          <div class="flex items-center justify-between">
+            <span class="eyebrow">L3</span>
+            <span class="text-gold text-[13px]">Full Operational</span>
+          </div>
+          <h3 class="mt-4 text-cream text-xl font-semibold tracking-tight">Полный&nbsp;зонт</h3>
+          <p class="mt-3 text-cream/75 text-[15px] leading-relaxed">
+            Всё из&nbsp;L2 + property management + работа с&nbsp;активами +
+            substance + банковские отношения.
+          </p>
+          <p class="mt-4 text-muted text-[13px] leading-relaxed">
+            Подходит, если&nbsp;хочется одну команду на&nbsp;весь быт в&nbsp;UAE&nbsp;— решает X людей вместо одной точки.
+          </p>
+        </article>
+
+      </div>
+
+      <p class="mt-8 text-muted text-[13px] sm:text-sm">
+        Не&nbsp;знаете, какой уровень ваш&nbsp;— напишите Оле, разберёмся вместе.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====================== MAY 6 MEETING ====================== -->
+  <section id="meeting" class="bg-navy-2">
+    <div class="mx-auto max-w-md sm:max-w-2xl lg:max-w-3xl px-5 sm:px-6 py-16 sm:py-24">
+      <div class="card p-6 sm:p-10">
+
+        <div class="flex items-center gap-3 mb-5">
+          <span class="eyebrow">6 мая · Bluewaters</span>
+          <span class="h-px flex-1 bg-line"></span>
+        </div>
+
+        <h2 class="font-serif text-cream text-[26px] leading-tight sm:text-3xl tracking-[-0.01em]">
+          На&nbsp;встрече BW заглянут Иван&nbsp;и&nbsp;Оля
+        </h2>
+
+        <p class="mt-5 text-cream/80 text-[16px] sm:text-lg leading-relaxed">
+          <span class="text-cream">Иван&nbsp;— CEO WTP2</span>, и&nbsp;<span class="text-cream">Оля&nbsp;— Client Success Manager</span>,
+          будут на&nbsp;встрече Bluewaters People в&nbsp;Bluewaters.
+          Формат неформальный, без программы и&nbsp;презентаций&nbsp;— мы&nbsp;идём как гости.
+        </p>
+
+        <p class="mt-4 text-cream/75 text-[15px] sm:text-base leading-relaxed">
+          Если у&nbsp;вас есть конкретный вопрос&nbsp;— по&nbsp;банку, документам, визе, активам&nbsp;—
+          подойдите и&nbsp;обсудим. Можно и&nbsp;заранее: написать Оле в&nbsp;Telegram, чтобы&nbsp;она знала, кого ждать,
+          и&nbsp;успела поднять справку по&nbsp;вашей ситуации.
+        </p>
+
+        <div class="mt-7 flex flex-col sm:flex-row gap-3">
+          <a
+            href="https://t.me/Olga_WTP"
+            data-cta="meeting-primary"
+            class="btn-primary tap inline-flex items-center justify-center px-6 rounded-full text-[15px]"
+          >
+            Написать заранее
+          </a>
+          <a
+            href="#contact"
+            data-cta="meeting-secondary"
+            class="btn-ghost tap inline-flex items-center justify-center px-6 rounded-full text-[15px]"
+          >
+            Хочу, чтоб Оля написала первая
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== WHO IS WTP2 ====================== -->
+  <section class="bg-navy">
+    <div class="mx-auto max-w-md sm:max-w-2xl lg:max-w-3xl px-5 sm:px-6 py-16 sm:py-20">
+      <p class="eyebrow mb-4">Кто такие WTP2</p>
+      <h2 class="font-serif text-cream text-[24px] leading-snug sm:text-[28px] tracking-[-0.01em]">
+        Wealth&nbsp;transfer platform для&nbsp;семей в&nbsp;UAE.
+      </h2>
+      <p class="mt-4 text-cream/75 text-[16px] leading-relaxed">
+        С&nbsp;2018&nbsp;года помогаем семьям устроиться в&nbsp;UAE
+        и&nbsp;держать операционку: банк, компания, виза, активы, документы.
+        Под&nbsp;каждым пунктом&nbsp;— профильный специалист.
+      </p>
+
+      <ul class="mt-6 grid grid-cols-2 gap-3 text-cream/85 text-[14px]">
+        <li class="card px-4 py-3">Banking</li>
+        <li class="card px-4 py-3">Business setup</li>
+        <li class="card px-4 py-3">Residency &amp; visa</li>
+        <li class="card px-4 py-3">Assets &amp; documents</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====================== CONTACT FORM (accordion) ====================== -->
+  <section id="contact" class="bg-navy-2">
+    <div class="mx-auto max-w-md sm:max-w-xl px-5 sm:px-6 py-16 sm:py-20">
+
+      <details class="card p-5 sm:p-7" id="contact-accordion">
+        <summary class="flex items-center justify-between gap-4 tap" aria-controls="contact-form">
+          <span class="font-serif text-cream text-[20px] sm:text-2xl tracking-[-0.01em]">
+            Хочу, чтоб Оля написала мне первая&nbsp;<span aria-hidden="true">→</span>
+          </span>
+          <svg class="chev shrink-0" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M4 7l5 5 5-5" stroke="#D4A574" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+
+        <div id="contact-form" class="mt-6">
+
+          <p class="text-cream/75 text-[14px] leading-relaxed mb-5">
+            Заполните 3&nbsp;поля&nbsp;— Оля свяжется в&nbsp;Telegram в&nbsp;течение 24&nbsp;часов.
+            Без&nbsp;звонков и&nbsp;роботов.
+          </p>
+
+          <!--
+            TODO (юзер): замените action на реальный Formspree endpoint:
+            https://formspree.io/f/PLACEHOLDER  →  https://formspree.io/f/xxxxxxxx
+            Альтернатива: поменять на mailto:olga@wtp.ae (см. mailto-fallback ниже).
+          -->
+          <form
+            id="lead-form"
+            action="https://formspree.io/f/PLACEHOLDER"
+            method="POST"
+            class="grid gap-3"
+            novalidate
+          >
+            <label class="block">
+              <span class="block mb-2 text-cream/70 text-[13px]">Как к&nbsp;вам обращаться</span>
+              <input
+                type="text"
+                name="name"
+                required
+                autocomplete="given-name"
+                placeholder="Анна"
+                class="field"
+              />
+            </label>
+
+            <label class="block">
+              <span class="block mb-2 text-cream/70 text-[13px]">Telegram или WhatsApp</span>
+              <input
+                type="text"
+                name="contact"
+                required
+                inputmode="text"
+                autocomplete="tel"
+                placeholder="@username или +971…"
+                class="field"
+              />
+            </label>
+
+            <label class="block">
+              <span class="block mb-2 text-cream/70 text-[13px]">Что у&nbsp;вас в&nbsp;повестке (опционально)</span>
+              <textarea
+                name="topic"
+                rows="3"
+                placeholder="Например: продление Golden Visa, открытие счёта, завещание"
+                class="field"
+              ></textarea>
+            </label>
+
+            <label class="flex items-start gap-3 mt-1 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                name="will_be_at_meeting"
+                value="yes"
+                class="mt-1 h-5 w-5 rounded border-line bg-transparent accent-[#D4A574]"
+              />
+              <span class="text-cream/80 text-[14px] leading-snug">
+                Буду на&nbsp;встрече Bluewaters People&nbsp;6&nbsp;мая
+              </span>
+            </label>
+
+            <!-- Hidden: UTM capture (filled at runtime by inline script) -->
+            <input type="hidden" name="utm_source" id="utm_source" />
+            <input type="hidden" name="utm_medium" id="utm_medium" />
+            <input type="hidden" name="utm_campaign" id="utm_campaign" />
+            <input type="hidden" name="utm_content" id="utm_content" />
+            <input type="hidden" name="utm_term" id="utm_term" />
+            <input type="hidden" name="referrer" id="referrer" />
+            <input type="hidden" name="page_path" id="page_path" />
+
+            <!-- Honeypot anti-spam -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+            <button
+              type="submit"
+              data-cta="form-submit"
+              class="btn-primary tap mt-3 inline-flex items-center justify-center rounded-full px-6 text-[15px]"
+            >
+              Отправить&nbsp;Оле
+            </button>
+
+            <p class="mt-2 text-muted text-[12px] leading-relaxed">
+              Нажимая «Отправить», вы&nbsp;соглашаетесь, что&nbsp;Оля свяжется с&nbsp;вами в&nbsp;Telegram/WhatsApp.
+              Никакого&nbsp;спама и&nbsp;звонков.
+              <a href="#" class="underline decoration-line/40 hover:decoration-gold/60 hover:text-cream/90">Privacy</a>.
+            </p>
+          </form>
+
+          <!-- Inline success message -->
+          <div id="form-success" class="hidden mt-6 card p-5">
+            <div class="flex items-start gap-3">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="10" stroke="#D4A574" stroke-width="1.4"/>
+                <path d="M6.5 11.5l3 3 6-6.5" stroke="#D4A574" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div>
+                <p class="text-cream text-[16px]">
+                  Спасибо, <span id="success-name">друг</span>.
+                </p>
+                <p class="mt-1 text-cream/75 text-[14px] leading-relaxed">
+                  Оля свяжется в&nbsp;Telegram в&nbsp;течение 24&nbsp;часов.
+                  Если хочется быстрее&nbsp;— можно написать ей&nbsp;напрямую:
+                  <a href="https://t.me/Olga_WTP" class="underline decoration-gold/40 hover:decoration-gold text-gold">@Olga_WTP</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mailto fallback link (visible at all times as low-friction alt) -->
+          <p class="mt-5 text-muted text-[12px]">
+            Или&nbsp;просто:
+            <a href="mailto:hello@wtp.ae?subject=BW%20%E2%80%94%20%D1%85%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B7%D0%BD%D0%B0%D0%BA%D0%BE%D0%BC%D0%B8%D1%82%D1%8C%D1%81%D1%8F" class="underline hover:text-cream">hello@wtp.ae</a>
+            ·
+            <a href="https://t.me/Olga_WTP" class="underline hover:text-cream">@Olga_WTP</a>
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="bg-navy border-t border-line/60">
+    <div class="mx-auto max-w-md sm:max-w-3xl lg:max-w-5xl px-5 sm:px-6 py-10 sm:py-12">
+
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-2">
+            <svg width="18" height="18" viewBox="0 0 22 22" aria-hidden="true">
+              <rect x="1" y="1" width="20" height="20" rx="4" fill="none" stroke="#D4A574" stroke-width="1.4"/>
+              <path d="M5 14 L9 7 L11 11 L13 7 L17 14" fill="none" stroke="#F5F3EE" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+            </svg>
+            <span class="text-cream/90 font-semibold tracking-tight">WTP2</span>
+          </div>
+          <p class="mt-3 text-muted text-[13px] leading-relaxed max-w-sm">
+            Wealth transfer platform для&nbsp;семей в&nbsp;UAE. Dubai, с&nbsp;2018&nbsp;года.
+          </p>
+        </div>
+
+        <nav class="flex flex-wrap gap-x-6 gap-y-2 text-[14px]">
+          <a href="https://wtp.ae" class="text-cream/80 hover:text-gold">wtp.ae</a>
+          <a href="https://t.me/Olga_WTP" class="text-cream/80 hover:text-gold">Telegram&nbsp;Оли</a>
+          <a href="mailto:hello@wtp.ae" class="text-cream/80 hover:text-gold">hello@wtp.ae</a>
+          <a href="#" class="text-cream/80 hover:text-gold">Privacy</a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-line/60 flex flex-col sm:flex-row sm:justify-between gap-2 text-muted text-[12px]">
+        <span>© 2026 WTP2 · Dubai, UAE</span>
+        <span>Эта страница для&nbsp;знакомых&nbsp;BW и&nbsp;paid&nbsp;traffic. Не&nbsp;индексируется.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================== JS: UTM capture + form submit + GA4 events ====================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ---- UTM capture (query string → hidden inputs + sessionStorage) ----
+      var UTM_KEYS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+      function getQuery(name) {
+        var p = new URLSearchParams(window.location.search);
+        return p.get(name) || '';
+      }
+      function readStored(key) {
+        try { return sessionStorage.getItem(key) || ''; } catch (e) { return ''; }
+      }
+      function writeStored(key, val) {
+        try { if (val) sessionStorage.setItem(key, val); } catch (e) {}
+      }
+      UTM_KEYS.forEach(function (k) {
+        var fromUrl = getQuery(k);
+        if (fromUrl) writeStored(k, fromUrl);
+        var val = fromUrl || readStored(k);
+        var el = document.getElementById(k);
+        if (el) el.value = val;
+      });
+      var refEl = document.getElementById('referrer');
+      if (refEl) refEl.value = document.referrer || '';
+      var pathEl = document.getElementById('page_path');
+      if (pathEl) pathEl.value = window.location.pathname + window.location.search;
+
+      // ---- GA4 click tracking on CTAs ----
+      function track(name, params) {
+        try {
+          if (typeof gtag === 'function') gtag('event', name, params || {});
+        } catch (e) { /* no-op */ }
+      }
+      document.querySelectorAll('[data-cta]').forEach(function (el) {
+        el.addEventListener('click', function () {
+          track('cta_click', {
+            cta_id: el.getAttribute('data-cta'),
+            page_path: window.location.pathname
+          });
+        });
+      });
+
+      // ---- Open accordion if URL hash is #contact ----
+      if (window.location.hash === '#contact') {
+        var acc = document.getElementById('contact-accordion');
+        if (acc) acc.open = true;
+      }
+      document.querySelectorAll('a[href="#contact"]').forEach(function (a) {
+        a.addEventListener('click', function () {
+          var acc = document.getElementById('contact-accordion');
+          if (acc) acc.open = true;
+        });
+      });
+
+      // ---- Form: AJAX submit to Formspree, inline success ----
+      var form = document.getElementById('lead-form');
+      var success = document.getElementById('form-success');
+      var nameEl = document.getElementById('success-name');
+
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          // If endpoint not yet replaced, fall back to mailto
+          var action = form.getAttribute('action') || '';
+          if (action.indexOf('PLACEHOLDER') !== -1) {
+            e.preventDefault();
+            var nameVal = (form.querySelector('[name="name"]') || {}).value || '';
+            var contactVal = (form.querySelector('[name="contact"]') || {}).value || '';
+            var topicVal = (form.querySelector('[name="topic"]') || {}).value || '';
+            var subj = encodeURIComponent('BW landing — заявка от ' + nameVal);
+            var body = encodeURIComponent(
+              'Имя: ' + nameVal + '\n' +
+              'Контакт: ' + contactVal + '\n' +
+              'Тема: ' + topicVal + '\n' +
+              'UTM source: ' + (document.getElementById('utm_source')||{}).value + '\n' +
+              'UTM medium: ' + (document.getElementById('utm_medium')||{}).value + '\n' +
+              'UTM campaign: ' + (document.getElementById('utm_campaign')||{}).value
+            );
+            window.location.href = 'mailto:hello@wtp.ae?subject=' + subj + '&body=' + body;
+            track('form_submit_mailto_fallback', {});
+            return;
+          }
+
+          // AJAX path
+          e.preventDefault();
+          var data = new FormData(form);
+          var btn = form.querySelector('button[type="submit"]');
+          if (btn) { btn.disabled = true; btn.textContent = 'Отправляем…'; }
+
+          fetch(action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          })
+          .then(function (resp) {
+            if (!resp.ok) throw new Error('Network response was not ok');
+            return resp.json().catch(function () { return {}; });
+          })
+          .then(function () {
+            track('form_submit_success', {
+              cta_id: 'lead-form',
+              has_meeting: (form.querySelector('[name="will_be_at_meeting"]') || {}).checked ? 'yes' : 'no'
+            });
+            if (nameEl) {
+              var n = (form.querySelector('[name="name"]') || {}).value || 'друг';
+              nameEl.textContent = n;
+            }
+            form.classList.add('hidden');
+            if (success) success.classList.remove('hidden');
+          })
+          .catch(function () {
+            track('form_submit_error', {});
+            if (btn) { btn.disabled = false; btn.textContent = 'Отправить Оле'; }
+            alert('Не удалось отправить. Напишите Оле напрямую: t.me/Olga_WTP');
+          });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
